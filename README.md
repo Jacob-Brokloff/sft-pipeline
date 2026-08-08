@@ -9,7 +9,7 @@ docker run --gpus all --rm -v $(pwd):/w -w /w --env-file .env axolotlai/axolotl:
 ## On a fresh pod
 
 ```
-git clone <your-repo-url> sft-pipeline
+git clone https://github.com/Jacob-Brokloff/sft-pipeline
 cd sft-pipeline
 cp .env.example .env
 nano .env
