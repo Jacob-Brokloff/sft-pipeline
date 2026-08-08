@@ -11,10 +11,10 @@ datasets:
   - path: ${DATASET_PATH}
     ${DATASET_DS_TYPE}
     type: chat_template
-    field_messages: messages
+    field_messages: ${FIELD_MESSAGES}
     message_property_mappings:
-      role: role
-      content: content
+      role: ${ROLE_KEY}
+      content: ${CONTENT_KEY}
 
 dataset_prepared_path: ./last_run_prepared
 val_set_size: ${VAL_SET_SIZE}
