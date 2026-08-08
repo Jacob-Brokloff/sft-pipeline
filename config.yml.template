@@ -1,0 +1,55 @@
+base_model: ${BASE_MODEL}
+trust_remote_code: ${TRUST_REMOTE_CODE}
+
+load_in_8bit: false
+load_in_4bit: false
+strict: false
+
+chat_template: tokenizer_default
+
+datasets:
+  - path: ${DATASET_PATH}
+    ${DATASET_DS_TYPE}
+    type: chat_template
+    field_messages: messages
+    message_property_mappings:
+      role: role
+      content: content
+
+dataset_prepared_path: ./last_run_prepared
+val_set_size: ${VAL_SET_SIZE}
+output_dir: ./out
+
+adapter: ${ADAPTER}
+lora_r: ${LORA_R}
+lora_alpha: ${LORA_ALPHA}
+lora_dropout: 0.05
+lora_target_linear: true
+
+sequence_len: ${SEQUENCE_LEN}
+sample_packing: ${SAMPLE_PACKING}
+pad_to_sequence_len: true
+
+micro_batch_size: 1
+gradient_accumulation_steps: 8
+num_epochs: ${NUM_EPOCHS}
+
+optimizer: adamw_torch_fused
+lr_scheduler: cosine
+learning_rate: ${LEARNING_RATE}
+warmup_ratio: 0.03
+weight_decay: 0.0
+max_grad_norm: 1.0
+
+bf16: auto
+tf32: true
+gradient_checkpointing: true
+flash_attention: ${FLASH_ATTENTION}
+
+logging_steps: 1
+saves_per_epoch: 1
+evals_per_epoch: 1
+
+hub_model_id: ${HUB_MODEL_ID}
+hub_strategy: end
+hub_private_repo: true
