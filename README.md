@@ -36,6 +36,26 @@ Then run the command at the top.
 | `SAMPLE_PACKING` | Off by default. Faster when on, not safe on every architecture |
 | `FLASH_ATTENTION` | Off by default |
 | `MERGE` | `true` to also merge the adapter into base weights |
+| `SPLIT` | Split name. Supports slicing, e.g. `train[:5000]` |
+
+## Running on RunPod
+
+Use the community Axolotl template. Axolotl is preinstalled in a venv, so no
+Docker is needed:
+
+    ./bootstrap.sh
+
+The venv uses `uv`, not `pip`.
+
+### Required for Mamba-based models
+
+Nemotron and other hybrid Mamba models need:
+
+    uv pip install causal-conv1d --no-build-isolation
+
+Without it the model falls back to a naive implementation: roughly 50x slower
+and the loss values are garbage. It warns rather than erroring, so nothing
+tells you something is wrong.
 
 ## Dataset format
 

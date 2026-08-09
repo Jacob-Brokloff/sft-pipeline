@@ -10,6 +10,7 @@ chat_template: tokenizer_default
 datasets:
   - path: ${DATASET_PATH}
     ${DATASET_DS_TYPE}
+    split: ${SPLIT}
     type: chat_template
     field_messages: ${FIELD_MESSAGES}
     message_property_mappings:
